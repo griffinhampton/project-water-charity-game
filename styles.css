@@ -13,3 +13,123 @@ Secondary Colors:
 - Pink:       #F16061
 
 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #8BD1CB 0%, #2E9DF7 100%);
+    color: #111;
+}
+
+.game-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', 'Times New Roman', Times, serif;
+    font-weight: 300;          
+    color: black;
+    letter-spacing: 5px;
+    text-align: center;
+    padding: 6px 10px;
+}
+
+.game-desc {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+
+.score-panel {
+
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 20px 30px;
+    margin: 20px auto;
+    max-width: 650px;
+
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.score,
+.litres,
+.lives {
+
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #111;
+    font-weight: 600;
+}
+
+.score span,
+.litres span,
+.lives span {
+
+    color: #2E9DF7;
+    font-weight: 700;
+}
+
+
+#start-btn {
+    background: #FFC907; 
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    
+    flex-basis: 100%;
+    margin-top: 8px;
+}
+
+#start-btn:hover {
+    background: #FF902A; 
+    transform: translateY(-2px);
+}
+
+#start-btn:active {
+    transform: translateY(0);
+}
+
+
+.canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+@media (max-width: 600px) {
+    .score-panel {
+        padding: 16px 20px;
+        gap: 12px;
+        flex-direction: column;
+    }
+    .score,
+    .litres,
+    .lives {
+        padding: 6px 8px;
+    }
+}
+
+#gameWindow{
+    cursor: none;
+}

@@ -5,9 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charity Water Game</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img\water-can.png">
 </head>
 <body>
-    <h1>Welcome to the Charity Water Game Prototype</h1>
+    <div class="game-wrapper">
+        <h1>charity: water</h1>
+        <p class="game-desc"></p>
+        <div class="score-panel">
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="litres">Litres of water saved: <span id="time">0</span></div>
+            <div class="lives">Lives: <span id="lives">10</span></div>
+            <button id="start-btn">Start Game</button>
+        </div>
+        <div class="canvas-container"><canvas id="gameWindow"></canvas></div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
