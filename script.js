@@ -12,7 +12,7 @@ let wx = 0;
 let wy = 0;
 let dropletSpeed = 0;
 const gravity = 0.03;
-let isEvilDroplet = false; // Track if current droplet is evil 
+let isEvilDroplet = false; 
 
 let gameStarted = false;
 let gameOver = false;
@@ -99,7 +99,6 @@ function spawnDroplet() {
     wy = 0;
     dropletSpeed = 0;
     
-    // 20% chance to spawn an evil droplet (1 in 5)
     isEvilDroplet = Math.random() < 0.2;
     
     if (isEvilDroplet) {
@@ -125,19 +124,15 @@ function checkCollision() {
         wy < canY + canHeight &&
         wy + dropHeight > canY) {
         
-        // Check if it's an evil droplet
         if (isEvilDroplet) {
-            // Evil droplet caught - reduce score!
             score = score - 25;
             litresSaved = litresSaved - 0.15;
             
-            // Don't let score or litres go negative
             if (score < 0) score = 0;
             if (litresSaved < 0) litresSaved = 0;
             
             console.log("Caught an EVIL droplet! Score reduced: " + score);
         } else {
-            // Good droplet caught - increase score
             score = score + 15;
             litresSaved = litresSaved + .1;
             
@@ -188,18 +183,14 @@ function animate() {
     }
 
     if (imagesLoaded >= 2 && !gameOver) {
-        // Draw the water droplet (grayscale if evil)
         if (isEvilDroplet) {
-            // Apply grayscale filter for evil droplets
             ctx.filter = 'grayscale(100%)';
             ctx.drawImage(waterImg, wx, wy);
-            ctx.filter = 'none'; // Reset filter
+            ctx.filter = 'none'; 
         } else {
-            // Draw normal colored droplet
             ctx.drawImage(waterImg, wx, wy);
         }
         
-        // Draw the water can following the mouse
         ctx.drawImage(mouseImg, mx - 20, my - 20, 40, 40);
     }
     
