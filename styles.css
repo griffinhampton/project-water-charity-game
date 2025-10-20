@@ -22,9 +22,13 @@ Secondary Colors:
 html, body {
     height: 100%;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #8BD1CB 0%, #2E9DF7 100%);
+    font-family: 'Cormorant Garamond', 'Times New Roman', Times, serif;
+    font-weight: 300;
+    background: linear-gradient(135deg, #8BD1CB 0%, #2E9DF7 100%) fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: #111;
+    overflow-x: hidden;
 }
 
 .game-wrapper {
@@ -36,7 +40,7 @@ html, body {
 h1 {
     font-family: 'Cormorant Garamond', 'Times New Roman', Times, serif;
     font-weight: 300;          
-    color: black;
+    color: #FFC907;
     letter-spacing: 5px;
     text-align: center;
     padding: 6px 10px;
@@ -46,76 +50,264 @@ h1 {
     text-align: center;
     color: #ffffff;
     margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
-
-.score-panel {
-
+/* Difficulty selection panel */
+.difficulty-panel {
     background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 650px;
+    text-align: center;
+    border: 3px solid #FFC907;
+}
+
+.difficulty-panel h2 {
+    color: #2E9DF7;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.difficulty-btn {
+    background: #ffffff;
+    border: 3px solid #FFC907;
+    border-radius: 10px;
+    padding: 20px 25px;
+    font-size: 16px;
+    font-family: 'Cormorant Garamond', 'Times New Roman', Times, serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 180px;
+}
+
+.difficulty-btn strong {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2E9DF7;
+}
+
+.difficulty-btn span {
+    font-size: 13px;
+    font-weight: 400;
+    color: #666;
+}
+
+.difficulty-btn:hover {
+    background: linear-gradient(135deg, #FFC907 0%, #FF902A 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(255, 201, 7, 0.5);
+}
+
+.difficulty-btn:hover strong,
+.difficulty-btn:hover span {
+    color: #111;
+}
+
+.difficulty-btn:active {
+    transform: translateY(0);
+}
+
+/* Score panel styles */
+.score-panel {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 20px 30px;
     margin: 20px auto;
     max-width: 650px;
-
     display: flex;
     gap: 20px;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    border: 3px solid #FFC907;
 }
 
 .score,
 .litres,
-.lives {
-
+.lives,
+.goal {
     padding: 8px 12px;
-    font-size: 16px;
+    font-size: 14px;
     color: #111;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.score span {
+    color: #FFC907;
     font-weight: 600;
 }
 
-.score span,
-.litres span,
-.lives span {
-
+.litres span {
     color: #2E9DF7;
-    font-weight: 700;
+    font-weight: 600;
 }
 
+.lives span {
+    color: #4FCB53;
+    font-weight: 600;
+}
+
+.goal span {
+    color: #FF902A;
+    font-weight: 600;
+}
 
 #start-btn {
-    background: #FFC907; 
+    background: linear-gradient(135deg, #FFC907 0%, #FF902A 100%);
     color: #111;
     border: none;
     border-radius: 8px;
     padding: 10px 24px;
     font-size: 16px;
-    font-weight: 700;
+    font-family: 'Cormorant Garamond', 'Times New Roman', Times, serif;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    
+    transition: all 0.3s;
     flex-basis: 100%;
     margin-top: 8px;
+    letter-spacing: 1px;
 }
 
 #start-btn:hover {
-    background: #FF902A; 
+    background: linear-gradient(135deg, #FF902A 0%, #F5402C 100%);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 144, 42, 0.4);
 }
 
 #start-btn:active {
     transform: translateY(0);
 }
 
-
 .canvas-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    position: relative; /* Allow absolute positioning of overlays */
 }
 
+/* Canvas overlay styles - positioned over the canvas */
+.canvas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 20px;
+    text-align: center;
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+/* Start message styles */
+#start-message {
+    background: linear-gradient(135deg, #2E9DF7 0%, #8BD1CB 100%);
+}
+
+#start-message h2 {
+    color: #FFFFFF;
+    font-size: clamp(24px, 4vw, 32px);
+    margin: 0 0 10px 0;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+#start-message p {
+    color: #FFFFFF;
+    font-size: clamp(14px, 2vw, 18px);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Countdown overlay styles */
+#countdown-overlay {
+    background: linear-gradient(135deg, rgba(46, 157, 247, 0.9) 0%, rgba(139, 209, 203, 0.9) 100%);
+}
+
+.countdown-ready {
+    color: #FFFFFF;
+    font-size: clamp(20px, 3vw, 28px);
+    margin: 0 0 20px 0;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.countdown-number {
+    color: #FFC907;
+    font-size: clamp(80px, 15vw, 120px);
+    font-weight: 300;
+    margin: 0;
+    line-height: 1;
+}
+
+/* Game Over overlay styles */
+#gameover-overlay {
+    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+}
+
+.overlay-title {
+    color: #FFC907;
+    font-size: clamp(36px, 6vw, 48px);
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    letter-spacing: 3px;
+}
+
+.overlay-score,
+.overlay-litres,
+.overlay-difficulty,
+.overlay-emoji {
+    color: #FFFFFF;
+    font-size: clamp(18px, 2.5vw, 24px);
+    margin: 8px 0;
+    letter-spacing: 1px;
+}
+
+.overlay-instruction {
+    color: #FFFFFF;
+    font-size: clamp(16px, 2vw, 20px);
+    margin: 20px 0 0 0;
+    letter-spacing: 1px;
+}
+
+/* Win overlay styles */
+#win-overlay {
+    background: linear-gradient(135deg, #4FCB53 0%, #159A48 100%);
+}
+
+.win-title {
+    font-size: clamp(42px, 7vw, 56px);
+    letter-spacing: 4px;
+}
+
+.overlay-emoji {
+    font-size: clamp(20px, 3vw, 28px);
+}
 
 @media (max-width: 600px) {
     .score-panel {
@@ -125,11 +317,115 @@ h1 {
     }
     .score,
     .litres,
-    .lives {
+    .lives,
+    .goal {
         padding: 6px 8px;
     }
 }
 
-#gameWindow{
+#gameWindow {
     cursor: none;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 3px solid #FFC907;
+}
+
+/* Footer styles - full width across bottom */
+.game-footer {
+    background: linear-gradient(135deg, #2E9DF7 0%, #159A48 100%);
+    padding: 40px 20px;
+    margin-top: 60px;
+    text-align: center;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.footer-text {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    letter-spacing: 2px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.footer-link:hover {
+    background: rgba(255, 201, 7, 0.3);
+    color: #FFC907;
+    transform: translateY(-2px);
+}
+
+.footer-link-donate {
+    background: #FFC907;
+    color: #111;
+    font-weight: 600;
+    padding: 10px 20px;
+}
+
+.footer-link-donate:hover {
+    background: #FF902A;
+    color: #111;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(255, 201, 7, 0.4);
+}
+
+.footer-divider {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-note {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-style: italic;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+    .game-footer {
+        padding: 30px 15px;
+    }
+    
+    .footer-text {
+        font-size: 18px;
+    }
+    
+    .footer-link {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .footer-link-donate {
+        padding: 8px 16px;
+    }
+    
+    .footer-note {
+        font-size: 12px;
+    }
 }

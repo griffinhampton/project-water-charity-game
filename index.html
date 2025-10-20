@@ -3,22 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Game</title>
+    <title>charity: water</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="img\water-can.png">
 </head>
 <body>
     <div class="game-wrapper">
         <h1>charity: water</h1>
-        <p class="game-desc"></p>
-        <div class="score-panel">
+        <p class="game-desc">Catch water droplets to save litres! Avoid the gray evil droplets.</p>
+        
+        <!-- Difficulty selection panel (shown before game starts) -->
+        <div class="difficulty-panel" id="difficulty-panel">
+            <h2>Select difficulty</h2>
+            <div class="difficulty-buttons">
+                <button type="button" class="difficulty-btn" id="easy-btn" data-difficulty="easy">
+                    <strong>Easy</strong>
+                    <span>Win: 150 pts | 15 lives | Slow</span>
+                </button>
+                <button type="button" class="difficulty-btn" id="normal-btn" data-difficulty="normal">
+                    <strong>Normal</strong>
+                    <span>Win: 300 pts | 10 lives | Medium</span>
+                </button>
+                <button type="button" class="difficulty-btn" id="hard-btn" data-difficulty="hard">
+                    <strong>Hard</strong>
+                    <span>Win: 500 pts | 7 lives | Fast</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Score panel (shown during game) -->
+        <div class="score-panel" id="score-panel" style="display: none;">
             <div class="score">Score: <span id="score">0</span></div>
             <div class="litres">Litres of water saved: <span id="time">0</span></div>
             <div class="lives">Lives: <span id="lives">10</span></div>
-            <button id="start-btn">Start Game</button>
+            <div class="goal">Goal: <span id="goal">300</span> pts</div>
+            <button type="button" id="start-btn">Restart Game</button>
         </div>
-        <div class="canvas-container"><canvas id="gameWindow"></canvas></div>
+        
+        <div class="canvas-container">
+            <canvas id="gameWindow"></canvas>
+            
+            <!-- Overlay messages (positioned over canvas) -->
+            
+            <!-- Starting message -->
+            <div class="canvas-overlay" id="start-message">
+                <h2>Select a difficulty to play</h2>
+                <p>Choose Easy, Normal, or Hard above</p>
+            </div>
+            
+            <!-- Countdown -->
+            <div class="canvas-overlay" id="countdown-overlay" style="display: none;">
+                <p class="countdown-ready">Get Ready!</p>
+                <h1 class="countdown-number" id="countdown-number">3</h1>
+            </div>
+            
+            <!-- Game Over screen -->
+            <div class="canvas-overlay" id="gameover-overlay" style="display: none;">
+                <h1 class="overlay-title">Game over</h1>
+                <p class="overlay-score">Final Score: <span id="final-score">0</span></p>
+                <p class="overlay-litres">Litres Saved: <span id="final-litres">0</span></p>
+                <p class="overlay-instruction">Click 'Change Difficulty' to play again!</p>
+            </div>
+            
+            <!-- Win screen -->
+            <div class="canvas-overlay" id="win-overlay" style="display: none;">
+                <h1 class="overlay-title win-title">You won!</h1>
+                <p class="overlay-emoji">🎉 Congratulations! 🎉</p>
+                <p class="overlay-score">Final Score: <span id="win-score">0</span></p>
+                <p class="overlay-litres">Litres Saved: <span id="win-litres">0</span></p>
+                <p class="overlay-difficulty">Difficulty: <span id="win-difficulty">Normal</span></p>
+                <p class="overlay-instruction">Click 'Change Difficulty' to play again!</p>
+            </div>
+        </div>
     </div>
+    
+    <!-- Footer with charity: water links -->
+    <footer class="game-footer">
+        <p class="footer-text">Learn more about the global water crisis</p>
+        <div class="footer-links">
+            <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer" class="footer-link">Visit charity: water</a>
+            <span class="footer-divider">|</span>
+            <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-donate">Donate now</a>
+        </div>
+        <p class="footer-note">100% of your donation funds clean water projects</p>
+    </footer>
+    
     <script src="script.js"></script>
 </body>
 </html>
